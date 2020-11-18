@@ -1,0 +1,33 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#sidebar
+{
+    position: absolute;
+    left: 0;
+    width: 20%;
+    background-color: cadetblue;
+    height: 100%;
+    overflow: auto;
+}
+
+#bodybar
+{
+    position: absolute;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    overflow: auto;
+}
+
+#textContainer
+{
+    position: relative;
+    top: 20px;
+    left: 10%;
+    width: 70%;
+}

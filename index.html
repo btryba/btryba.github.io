@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>Simplex-Lib</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="sidebar">
+            <a href="https://btryba.github.io/news">News</a><br>
+            <b>View the Code</b><br>
+            <a href="https://github.com/btryba/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://github.com/btryba/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>View the Documentation</b><br>
+            <a href="https://btryba.github.io/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://btryba.github.io/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>Download Binaries</b><br>
+            <i>No Binaries Yet</i>
+        </div>
+        <div id="bodybar">
+            <div id="textContainer">
+                <h1>Projects</h1>
+                <h3>Simplex-Lib</h3>
+                <p>The Simplex-Lib project is a library with the sole purpose of trying to make programming
+                    in C++ easier. Generally when people program in C++ they are focused on speed and file
+                    size. If they want convience they go to Python, Java or C#. Personally, rather than trying
+                    to get multiple languages to work together, I would rather work in one langauge with
+                    extensions.
+                    <br><br>
+                    Simplex-Lib is very object orriented as everything derrives from the class simplex::object.
+                    There is a focus to build on top the standard templating library as well. This means whenever
+                    the standard libraries get enhanced they should automatically come for free when Simplex-Lib
+                    is rebuilt.
+                    <br><br>
+                    Furthermore, the library is licensed under the BSD license so you are free to either dynamically
+                    link or statically build it into your application.
+                    <br><br>
+                    <a href="https://github.com/btryba/simplex-lib">View the Code</a><br>
+                    <a href="https://btryba.github.io/simplex-lib">View the Documentation</a>
+                </p>
+                <h3>Simplex-TUI</h3>
+                <p>The Simplex-TUI project is a toolkit for creating text user infaces for use in the console.
+                    The library leverages the ncurses library for maximum capability but strives to make it
+                    as easy as possible to generate easy to maintain interfaces.
+                    <br><br>
+                    It is licensed under the BSD license so you are free to either dynamically
+                    link or statically build it into your application.
+                    <br><br>
+                    <a href="https://github.com/btryba/simplex-tui">View the Code</a><br>
+                    <a href="https://btryba.github.io/simplex-tui">View the Documentation</a>
+                </p>
+                <h1>News</h1>
+                <h3>November 2020</h3>
+                <p>A fair amount of changes have happened in November. Some of the new classes added are
+                    a Singleton class for making sure that singleton's get destructed when the program
+                    is winding down. A Thread class for calling a function on a thread. 
+                    <br><br>
+                    There is now a Dictionary class which is a wrapper for std::unordered_map. To 
+                    accomidate this update, the string class now supports hashing. Also, classes derrived 
+                    from object now will have a getHash() method. By default it is based just on the pointers 
+                    address so every object is unique. However, it is virtual so that if the object should 
+                    support hashing getHash() can be overridden and updated to do proper hashing for the 
+                    class. Then this bit of code will need to be added to the header so that std::hash can 
+                    be used.
+                    <br><br>
+                    template<> struct std::hash<custom::class><br>
+                    {<br>
+                        size_t operator()(const custom::class& obj) const noexcept<br>
+                        {<br>
+                            return obj.getHash();<br>
+                        }<br>
+                    };<br>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

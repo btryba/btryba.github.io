@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Simplex-Lib</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="sidebar">
+            <a href="https://btryba.github.io/news">News</a><br>
+            <b>View the Code</b><br>
+            <a href="https://github.com/btryba/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://github.com/btryba/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>View the Documentation</b><br>
+            <a href="https://btryba.github.io/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://btryba.github.io/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>Download Binaries</b><br>
+            <i>No Binaries Yet</i>
+        </div>
+        <div id="bodybar">
+            <div id="textContainer">
+                <h1>News</h1>
+                <h3>November 2020</h3>
+                <p> A fair amount of changes have happened in November. Some of the new classes added are
+                    a Singleton class for making sure that singleton's get destructed when the program is
+                    winding down. A Thread class for calling a function on a thread. 
+                </p><p>
+                    There is now a Dictionary class which is a wrapper for std::unordered_map. To accomidate
+                    this update, the string class now supports hashing. Also, classes derrived from object 
+                    now will have a getHash() method. By default it is based just on the pointers address 
+                    so every object is unique. However, it is virtual so that if the object should support 
+                    hashing getHash() can be overridden and updated to do proper hashing for the class. 
+                    Then this bit of code will need to be added to the header so that std::hash can be used.
+                </p><p>
+                    template<> struct std::hash<custom::class><br>
+                    {<br>
+                        size_t operator()(const custom::class& obj) const noexcept<br>
+                        {<br>
+                            return obj.getHash();<br>
+                        }<br>
+                    };<br>
+                </p>
+                <h3>May 2020</h3>
+                <p>It's been a while since a major update, however, we now have one. Lots of classes have 
+                    implementation to them now. VSCode compile and launch scripts have been added for those 
+                    interested in using VSCode. In addition to that main.cpp is now included which essentially 
+                    is a script for testing various things. 
+                </p>
+                <h3>January 2020</h3>
+                <p>This month has been the initial commits of the simplex library. During this month the
+                    creation of the string class has begun to take shape as well as some addition classes.
+                </p>
+                <p>Nothing is close to being stable yet but the documentation is being written along with 
+                    the classes and methods in a hope that there will not be a large build up of undocumented 
+                    methods.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
