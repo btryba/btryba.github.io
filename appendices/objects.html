@@ -1,0 +1,489 @@
+<html>
+    <head>
+        <title>Functions and Objects</title>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../default.min.css">
+        <script src="../highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <div id="sidebar">
+            <a href="https://btryba.github.io/news.html">News</a><br>
+            <b>View the Code</b><br>
+            <a href="https://github.com/btryba/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://github.com/btryba/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>View the Documentation</b><br>
+            <a href="https://btryba.github.io/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://btryba.github.io/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>Download Binaries</b><br>
+            <i>No Binaries Yet</i>
+        </div>
+        <div id="bodybar">
+            <div id="textContainer">
+                <h1>Functions and Objects</h1>
+                <p>When you are programming a good principle to adhear to is the "DRY" principle,
+                    or quite simply "Don't Repeat Yourself". Anytime you find yourself doing copy
+                    and paste three times or more, it is probably a good idea to use a function.
+                    And if you have a bunch of functions that relate to a common task, it is probably
+                    a good time to bring them together into a class.
+                </p>
+                <h3>Functions</h3>
+                <p>So what exactly is a function? A function is a piece of code that can be reused.
+                    Let's start with a very simplisitic C++ example. Let's say you have this code.
+                </p>
+                <pre>
+                    <code class="c++">
+#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout << "Hello World!" << std::endl;
+    std::cout << "Hello World!" << std::endl;
+    std::cout << "Hello World!" << std::endl;
+
+    return 0;
+}
+                    </code>
+Output:
+                    <code class="plaintext">
+Hello World!
+Hello World!
+Hello World!
+                    </code>
+                </pre>
+                <p>So this is a very simple example that will say Hello World! three times. In this example,
+                    yes, we could have used a loop, but let's not play devil's advocate. Let's say that
+                    instead of saying "Hello World", we want to say "Good bye World". We would have to
+                    change it 3 times. So in something more complex, this could be challenging to make sure
+                    that you really "fixed" your code in all the places. This is where functions come into
+                    play. Let's rewrite this with a function.
+                </p>
+                <pre>
+                    <code class="c++">
+#include &lt;iostream&gt;
+
+void printMessage();
+
+int main()
+{
+    printMessage();
+    printMessage();
+    printMessage();
+
+    return 0;
+}
+
+void printMessage()
+{
+    std::cout << "Hello World!" << std::endl;
+}
+                    </code>
+Output:
+                    <code class="plaintext">
+Hello World!
+Hello World!
+Hello World!
+                    </code>
+                </pre>
+                <p>
+                    So we can see here that right below our iostream include, we have what is called
+                    a function prototype. This tells the compiler that in the future we are going to
+                    have a function and it will look like this.
+                </p>
+                <p>By looking at the prototype the first word we have is `void`. Void means that it
+                    is not returning anything back. It is named printMessage. And right now () means
+                    it is a function. We will get into more detail below.
+                </p>
+                <p>In our main... function. Yes that is right main is also a function. We see that
+                    we have printMessage(); three times. This means call the function.
+                </p>
+                <p>Below the main function we have the implementation of our function. And it says to
+                    print Hello World.
+                </p>
+                <p>Let's change this so this so that it can accept parameters.</p>
+                <pre>
+                    <code class="c++">
+#include &lt;iostream&gt;
+
+void printMessage(const char* message);
+
+int main()
+{
+    printMessage("Hello World");
+    printMessage("Good bye World");
+    printMessage("Hello World");
+
+    return 0;
+}
+
+void printMessage(const char* message)
+{
+    std::cout << message << std::endl;
+}
+                    </code>
+Output:
+                    <code class="plaintext">
+Hello World
+Good bye World
+Hello World
+                    </code>
+                </pre>
+                <p>This code looks almost the same except that now see that the prototype has
+                    `const char*` in between the parenthesis. This means that it now is accepting
+                    a constant pointer to a character (ie: string), called message. In the main
+                    function we then pass in a message. And in our implementation, instead of hard-coding
+                    a message we use whatever was sent in.
+                </p>
+                <h3>Function Overloading</h3>
+                <p>Overloading functions allows you do special things based on the type that is passed in.</p>
+                <p>To keep things simple, right now we are passing a string into our printMessage function.
+                    What if we wanted to send in a number? Let's say specifically an integer? You might
+                    thing that you could just do: printMessage(123);
+                    However, this will not compile. printMessage only accepts a `const char*` not a
+                    `int`.
+                </p>
+                <p>Let's update our code to accept an int.</p>
+                <pre>
+                    <code class="c++">
+#include &lt;iostream&gt;
+
+void printMessage(const char* message);
+void printMessage(int number);
+
+int main()
+{
+    printMessage("Hello World");
+    printMessage(123);
+    printMessage(456);
+
+    return 0;
+}
+
+void printMessage(const char* message)
+{
+    std::cout << message << std::endl;
+}
+void printMessage(int number)
+{
+    std::cout << number << std::endl;
+}
+                    </code>
+Output:
+                    <code class="plaintext">
+Hello World
+123
+456
+                    </code>
+                </pre>
+                <p>There we have fixed that issue, but let's say that we wanted to do more with
+                    functions. Let's say we wanted to make a function that can add two numbers
+                    together.
+                </p>
+                <pre>
+                    <code class="c++">
+#include &lt;iostream&gt;
+
+void printMessage(const char* message);
+void printMessage(int number);
+int sum(int number1, int number2);
+
+int main()
+{
+    printMessage("Hello World");
+    int total = sum(123 + 456);
+    printMessage(total);
+    printMessage(sum(123+456));
+
+    return 0;
+}
+
+void printMessage(const char* message)
+{
+    std::cout << message << std::endl;
+}
+void printMessage(int number)
+{
+    std::cout << number << std::endl;
+}
+int sum(int number1, int number2)
+{
+    return number1 + number;
+}
+                    </code>
+Output:
+                    <code class="plaintext">
+Hello World
+579
+579
+                    </code>
+                </pre>
+                <p>Our code is starting to get longer. Now you will see there is a new function
+                    called `sum`. It doesn't say `void` it says `int`. That means it will return
+                    an `int` type when it is done. It also accepts two ints. One called number1
+                    and one called number2. If we jump down to the implementation we see that it
+                    says it will take number1 + number2 and then return it.
+                </p>
+                <p>In our main function we see it being used a couple times. The first time we are
+                    creating a new variable called total. And we are using our function to sum the
+                    two numbers together. Next we tell our printMessage to display the value of total.
+                    The line below that, we don't create a variable and use it. We just tell printMessage
+                    to show whatever it gets back from sum. These lines do the exact same thing.
+                </p>
+                <h3>Custom Types</h3>
+                <p>Up to this point we have worked with the `char*` and `int` types. We have inputed
+                    these types into a function and we have returned the types back our of the function.
+                </p>
+                <p>Let's look at a new example and see where a custom type might be helpful.</p>
+                <pre>
+                    <code>
+#include &lt;iostream&gt;
+
+void printAge(int age);
+void printMonthBuilt(int month);
+
+int main()
+{
+    int carAge = 3;
+    int carMonthBuilt = 1; //Jan
+    int truckAge = 10;
+    int truckMonthBuilt = 3; //March
+
+    printAge(carAge);
+    printMonthBorn(carMonthBuilt);
+    printAge(truckAge);
+    printMonthBorn(truckMonthBuilt);
+
+    return 0;
+}
+
+void printAge(int age)
+{
+    std::cout << "Vehicle is " + age + " years old." << std::endl;
+}
+
+void printMonthBuilt(int month)
+{
+    std::cout << "Built in month: " + month << std::endl;
+}
+                    </code>
+Output:
+                    <code class="plaintext">
+Vehicle is 3 years old.
+Built in month: 1
+Vehicle is 10 years old.
+Built in month: 3
+                    </code>
+                </pre>
+                <p>In this example, we have 2 vehicles and each has an age and a month it was built in.
+                    We also have 2 functions. One prints out some text with the age information and
+                    one prints out some text on the month it was built information.
+                </p>
+                <p>Let's add our custom type and look at the differences.</p>
+                <pre>
+                    <code>
+#include &lt;iostream&gt;
+
+void printAge(int age);
+void printMonthBuilt(int month);
+
+struct Vehicle
+{
+    int age;
+    int monthBorn;
+    int numberWheels;
+};
+
+int main()
+{
+    Vehicle car;
+    car.age = 3;
+    car.monthBuilt = 1; //Jan
+    car.numberWheels = 4;
+    Vehicle truck;
+    truck.age = 10;
+    truck.monthBuilt = 3; //March
+    truck.numberWheels = 6;
+
+    printAge(car.age);
+    printMonthBorn(car.monthBuilt);
+    printAge(truck.age);
+    printMonthBorn(truck.monthBuilt);
+
+    return 0;
+}
+
+void printAge(int age)
+{
+    std::cout << "Vehicle is " + age + " years old." << std::endl;
+}
+
+void printMonthBuilt(int month)
+{
+    std::cout << "Built in month: " + month << std::endl;
+}
+                    </code>
+Output:
+                    <code class="plaintext">
+Vehicle is 3 years old.
+Built in month: 1
+Vehicle is 10 years old.
+Built in month: 3
+                    </code>
+                </pre>
+                <p>So the first thing we notice is that we have created a `struct` short for
+                    structure. It is named "Vehicle" and this is our custom types name.
+                    And our struct contains two `int`s in it. One is called age and
+                    one is called monthBuilt. And we also added how many wheels it has.
+                </p>
+                <p>
+                    Previously we created an `int` called carAge and carMonthBuilt. Now we are creating
+                    an `Vehicle` called car. Then we can set it's age and month built by using car.age
+                    and car.monthBuilt.
+                </p>
+                <p>We are almost to object oriented programming. But, before we get to that last
+                    step I want to point out that the differences between "car" and `Vehicle`.
+                    "car" is technically an object, or more properly an instance. `Vehicle` is a type
+                    and a way to think of it is that it is a blueprint. If you go to a factory
+                    and look at the blueprint it describes everything about the vehicle.
+                    When you actually build the vehicle it is an object.
+                </p>
+                <p>To further explain this difference between a type and an object. Let's experiment
+                    with our Vehicle type. This type says we need 3 things to have vehicle. An
+                    age, a month it is built, and a number of wheels. Let's say we are in the factory
+                    building `Vehicle`s and it is January. We decide to make a car with 4 wheels.
+                    It's age is 0, and it's month built is 1. And it has 4 wheels.
+                </p>
+                <pre>
+                    <code class="c++">
+struct Vehicle
+{
+    int age;
+    int monthBorn;
+    int numberWheels;
+};
+
+int main()
+{
+    Vehicle car1;
+    car1.age = 0;
+    car1.monthBuilt = 1; //Jan
+    car1.numberWheels = 4;
+
+    Vehicle car2;
+    car2.age = 0;
+    car2.monthBuilt = 1;
+    car2.numberWheels = 4;
+
+    return 0;
+}
+                    </code>
+                </pre>
+                <p>Let's say something happens when `car2` is driving down the road and one of it's
+                    wheel fall off. Now car2.numberWheels will equal 3. `car2` two is an object, 
+                    and it has 3 wheels. `car1` still has 4 wheels because it is a different object.
+                    Notice that by a wheel falling off, the blue prints still say it must have wheels
+                    and that the blue prints don't say how many wheels.
+                </p>
+                <h3>Objects</h3>
+                <p>Let me start out by saying that `class` and `struct` mean the same thing. The
+                    only difference is that all the parts of a class are private by default and
+                    all the parts of a struct are public by default. That is the only difference.
+                </p>
+                <p>Let's have some vehicles and some animals now.</p>
+                <pre>
+                    <code>
+#include &lt;iostream&gt;
+
+void printAnimalAge(int age);
+void printVehicleAge(int age);
+
+int main()
+{
+    int dogAge = 1;
+    int truckAge = 3;
+
+    printAnimalAge(dogAge);
+    printVehicleAge(truckAge);
+
+    return 0;
+}
+
+void printAnimalAge(int age)
+{
+    std::cout << "Animal is " + age + " years old." << std::endl;
+}
+
+void printVehicleAge(int age)
+{
+    std::cout << "Vehicle is " + age + " years old." << std::endl;
+}
+
+                    </code>
+Output:
+                    <code class="plaintext">
+Animal is 1 years old.
+Vehicle is 3 years old.
+                    </code>
+                </pre>
+                <p>Now in this example we have a dog and a truck. Both have ages, so we need to make
+                    sure we use the right function. If we don't use the right function it will tell
+                    us the vehicle age of our dog and the animal age of our truck. Let's make some
+                    custom types and see if we can improve this code to prevent us from making mistakes.
+                </p>
+                <pre>
+                     <code>
+#include &lt;iostream&gt;
+
+class Animal
+{
+    public:
+    int age;
+    void printAge()
+    {
+        std::cout << "Animal is " + age + " years old." << std::endl;
+    }
+}
+
+class Vehicle
+{
+    public:
+    int age;
+    void printAge()
+    {
+        std::cout << "Vehicle is " + age + " years old." << std::endl;
+    }
+}
+
+int main()
+{
+    Animal dog;
+    dog.age = 1;
+
+    Vehicle truck;
+    truck.age = 3;
+
+    dog.printAge();
+    truck.printAge();
+
+    return 0;
+}
+
+                    </code>
+Output:
+                    <code class="plaintext">
+Animal is 1 years old.
+Vehicle is 3 years old.
+                    </code>
+                </pre>
+                <p>This has made things quite a bit simplier. Both types have a printAge and an age.
+                    Beyond that, we can never print "Animal is...." for a Vehicle and we can never
+                    print "Vehicle is..." for an animal. Also, we don't need to pass around the age
+                    variable anymore. In printAge() it just says look for the age of the object and
+                    use whatever value it is.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

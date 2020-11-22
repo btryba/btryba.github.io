@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Compiler Basics</title>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../default.min.css">
+        <script src="../highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <div id="sidebar">
+            <a href="https://btryba.github.io/news.html">News</a><br>
+            <b>View the Code</b><br>
+            <a href="https://github.com/btryba/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://github.com/btryba/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>View the Documentation</b><br>
+            <a href="https://btryba.github.io/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://btryba.github.io/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>Download Binaries</b><br>
+            <i>No Binaries Yet</i>
+        </div>
+        <div id="bodybar">
+            <div id="textContainer">
+                <h1>Compiler Basics</h1>
+                <p>The first question is what is a compiler? There are 3 types of code. One type is
+                    code machine code. Very few people write directly in machine code so we will
+                    ignore that. The second type is interpreted code. This is code that is written
+                    in a way that most people can understand it and while it is running a program
+                    called an interpreter converts it into machine code. This happens every time 
+                    the program is run. The third type is compiled code. This is code that is written
+                    in a way that people can understand, but then before it can be run, it must be
+                    turned into machine code by a program called a compiler. This is compiled once
+                    and then can be run over and over.
+                </p>
+                <p>For the purpose of this document, it will be assumed that you know what objects
+                    and functions are. To read up on that you can click <a href="objects.html">here.</a>
+                </p>
+                <p>Generally in C++ your classes are written using PIMPL, where you have header files
+                    (.hpp, .hxx, .h) and source files (.cpp, .cxx). You can read more about PIMPL 
+                    <a href="pimpl.html">here.</a>
+                </p>
+                <p>When compiling there are two steps that we work with. The compiler and the linker.
+                    The compiler converts human readable code into machine code. The linker combines
+                    the code together and will remove where the code is duplicated and will make
+                    sure that all the code can run from file to file.
+                </p>
+                <p>
+                    We probably will need an example to explain this...
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

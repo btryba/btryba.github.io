@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <title>C++ Basics</title>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../default.min.css">
+        <script src="../highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <div id="sidebar">
+            <a href="https://btryba.github.io/news.html">News</a><br>
+            <b>View the Code</b><br>
+            <a href="https://github.com/btryba/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://github.com/btryba/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>View the Documentation</b><br>
+            <a href="https://btryba.github.io/simplex-lib">Simplex-Lib</a><br>
+            <a href="https://btryba.github.io/simplex-tui">Simplex-TUI</a><br>
+            <br>
+            <b>Download Binaries</b><br>
+            <i>No Binaries Yet</i>
+        </div>
+        <div id="bodybar">
+            <div id="textContainer">
+                <h1>C++ Basics</h1>
+                <h3>What is Unique about C++</h3>
+                <p>C++ is a systems langauge and it is compiled. What does that mean? It means that
+                    you have a lot of control of what is going on. When you use a very high level
+                    scripting langauge, you have a langauge that is designed to do a lot of the work
+                    for you. This will save you time in developing because you have the computer
+                    helping you. As you get into lower and lower langauges, you have less and less
+                    computer automated steps and help.
+                </p>
+                <p>One way to understand the control you have is to compare it to a high level
+                    language where you have less control. If we look at Javascript for example.
+                    First this is an interpreted language rather than a compiled langauge. This
+                    means that the code you write is being converted into machine code <i>while</i>
+                    it is being run. This is a slightly slower process since the computer is working
+                    on understanding your code during operation. And it does this process everytime
+                    the code is run. So this is a slightly slower process. However, a benefit is 
+                    that you have duck typing.
+                </p>
+                <p>What is duck typing. Well if it looks like a duck and sounds like a duck, it must
+                    be a duck. It means that if you create a variable and you assign it a number, it
+                    must be a number. If you assign a string to it, it must be a string. In C++, the
+                    language is compiled and that means that the computer is not able at run time to
+                    determine what type it is while it is being run. As a developer this means that
+                    you must tell it the type. If it is an integer, you say it is an int. If it is a
+                    decimal value, you say it is a float or a double. Again, you are in control.
+                </p>
+                <p>So far we have dicussed that C++ is compiled meaning the computer isn't reading your
+                    code during runtime. Meaning that it reads it all and converts it to machine code during
+                    "compile-time". There is another document describing compiling in detail 
+                    <a href="compilerBasics.html">here.</a> For sake of this document, you just need to know
+                    that after you write your code you need to convert it into machine code using a compiler.
+                    The other thing we have seen is that due to compiling you need to specify the types of every.
+                    Why is this? As you get into compiled lanagues you become more and more concerned about the
+                    memory that the computer is using.
+                </p>
+                <p>Technically there is a type of language between our mid-level language of C++ and
+                    the high level language of Javascript. Those are languages like C# and Java. These
+                    languages are sometimes called, half-compiled. They are faster than intrepreted
+                    languages, but the computer still reads it during runtime so that you have more
+                    features.
+                </p>
+                <h3>One Language to Rule them All?</h3>
+                <p>This is why there are more than one type of language. You need to pick a language
+                    that fits your needs. If you want a language that practically writes itself, and
+                    speed and size are not an issue. Go as high level as you can. If you need a language
+                    that allows you tweak the internal componets of the computer processor and allows
+                    you to do tricks to reuse the computer's memory in unusual ways, go low level.
+                </p>
+                <p>C++ is what is sometimes called a low-level language by some, and high-level language
+                    by others. I will refer to it as a mid-level language. Due to it's mid-level-ness.
+                    This means that like a low-level language you will need to manage your memory manually,
+                    but there are ways to use the computer to do it for you. You don't have the ability,
+                    in C++, to manually tweak the processor, but you do have <i>access,</i> to call languages
+                    that can do that. (High-level languages don't even let you think about that.)
+                </p>
+                <h3>Can we look at the Language sometime today?</h3>
+                <p>Sure, let's do that right now.</p>
+                <p>Here is our first program.</p>
+                <pre><code class="c++">
+int main()
+{
+    return 0;
+}
+                </code>
+                    Output:
+                                        <code class="plaintext"> 
+                                        </code>
+                                    </pre>
+                <p>This super advanced program does.... absolutely nothing. Well kind of. It actually
+                    does 2 things. It starts and it ends. Upon ending it tells the operating system (OS)
+                    that everything ending perfectly fine and that nothing went wrong.
+                </p>
+                <p>Now would probably be a good time to set up a development environment on your computer.
+                    <a href="GettingSetUp.html">This</a> document is helpful in that regard.
+                </p>
+                <p>Ok, let's look at something that actually does <i>something.</i></p>
+                <pre><code class="c++">
+#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout << "Hello World!" << std::endl;
+    return 0;
+}
+                </code>
+Output:
+                    <code class="plaintext">
+Hello World!
+                    </code>
+                </pre>
+                <p>This will display on your screen in a terminal or command-prompt window:<br>
+                    Hello World!<br>
+                    Let's look at what is happening here. First we are including `iostream`.
+                    This is code that was written by someone else so that you have the ability
+                    to input from the console and output to it.
+                </p>
+                <p>Once we have added all of thier code we have our int main() line. This is always
+                    the starting point of our programs. So we are starting our program here.
+                </p>
+                <p>Next we have some {} curley brace symbols. These are used to group things together.
+                    For now, just know they are needed.
+                </p>
+                <p>On the next line the magic happens. When you include iostream it basically is like
+                    dropping a bucket into your code with a bunch of commands that you can use. One
+                    command is called cout (pronouced: "see-out"). To use it, you first need to say
+                    "look in the STandarD bucket". So we have `std::cout`. This is saying you'll find
+                    `cout` in the `std` bucket. Then we pass in our phrase. Lastly, we dig in the bucket
+                    for `endl` which means "end line".
+                </p>
+                <p>Return 0 means return the error code 0 to the OS. Again this means no error occured.</p>
+                <h3>Conclusion</h3>
+                <p>Well there you have it. An very basic example of what the language looks like. Hopefully,
+                    you understand that it is compiled which means that run-time <i>should be</i> faster.
+                    Also that C++ has manually memory management so it isn't as "easy" as a high-level
+                    language, but with lack of ease comes more power.
+                </p>
+                <p>If you have made it this far and are not spooked away from the language, you should
+                    continue to learn it and as you learn it you will find some of the tools in the simplex-lib
+                    will make your life easier and hopefully make the language feel a bit higher level than
+                    it is normally.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
